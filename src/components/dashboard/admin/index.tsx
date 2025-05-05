@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { RootState, AppDispatch } from '../../../redux/store';
 import {
   Box,
   Typography,
@@ -45,9 +46,21 @@ const schema = yup.object({
   teamLead: yup.string().required('Team Lead is required'),
 });
 
+type Inputs = {
+  name: string
+  email: string
+  password: string
+  confirmPassword: string
+  organization: string
+  role: string
+}
+
+interface InitialState {
+  users: Inputs[],
+}
 export default function AdminDashboard() {
-  const { team } = useSelector((state) => state);
-  const { user } = useSelector((state) => state);
+  const { team } = useSelector((state:RootState) => state);
+  const { user } = useSelector((state:RootState) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -171,7 +184,7 @@ export default function AdminDashboard() {
               Existing Teams
             </Typography>
             <Stack spacing={1}>
-              {team.teams.map((team, idx) => (
+              {team.teams.map((team: Team, idx) => (
                 <Paper key={idx} variant="outlined" sx={{ p: 1 }}>
                   {team.name} (Lead: {team.lead})
                 </Paper>
