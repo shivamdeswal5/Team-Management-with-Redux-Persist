@@ -1,4 +1,4 @@
-import { createSlice} from "@reduxjs/toolkit";
+import { createSlice,PayloadAction} from "@reduxjs/toolkit";
 
 type Inputs = {
   name: string
@@ -9,7 +9,11 @@ type Inputs = {
   role: string
 }
 
-const initialState ={
+interface InitialState {
+  users: Inputs[],
+}
+
+const initialState :InitialState={
   users:[],
 }
 
@@ -17,7 +21,7 @@ const userSlice = createSlice({
   name: "user",
   initialState : initialState,
   reducers: {
-    addUser(state,action:any) {
+    addUser(state,action:PayloadAction<Inputs>) {
       state.users.push(action.payload);     
     },
   }   
