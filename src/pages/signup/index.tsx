@@ -14,7 +14,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from '../../redux/slices/user/userSlice'
-
+import { RootState,AppDispatch } from '../../redux/store';
 
 const schema = yup
     .object({
@@ -29,8 +29,8 @@ const schema = yup
 
 export default function Signup() {
 
-    const { user } = useSelector((state) => state);
-    const dispatch = useDispatch();
+    const { user } = useSelector((state:RootState) => state);
+    const dispatch = useDispatch<AppDispatch>();
 
     const navigate = useNavigate();
 

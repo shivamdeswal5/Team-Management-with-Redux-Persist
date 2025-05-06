@@ -22,14 +22,6 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { addTeam } from '../../../redux/slices/team/teamSlice';
 
-interface User {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  organization: string;
-  role: string;
-}
 
 interface Team {
   name: string;
@@ -46,22 +38,11 @@ const schema = yup.object({
   teamLead: yup.string().required('Team Lead is required'),
 });
 
-type Inputs = {
-  name: string
-  email: string
-  password: string
-  confirmPassword: string
-  organization: string
-  role: string
-}
 
-interface InitialState {
-  users: Inputs[],
-}
 export default function AdminDashboard() {
   const { team } = useSelector((state:RootState) => state);
   const { user } = useSelector((state:RootState) => state);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const {

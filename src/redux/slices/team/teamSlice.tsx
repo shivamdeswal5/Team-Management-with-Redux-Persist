@@ -1,6 +1,15 @@
-import { createSlice} from "@reduxjs/toolkit";
+import { createSlice,PayloadAction} from "@reduxjs/toolkit";
 
-const initialState ={
+type Inputs = {
+  name: string
+  lead:string
+}
+
+interface InitialState {
+  teams: Inputs[],
+}
+
+const initialState: InitialState ={
   teams:[],
 }
 
@@ -8,7 +17,7 @@ const teamSlice = createSlice({
   name: "team",
   initialState : initialState,
   reducers: {
-    addTeam(state,action:any) {
+    addTeam(state,action:PayloadAction<Inputs>) {
       state.teams.push(action.payload);     
     },
   }   

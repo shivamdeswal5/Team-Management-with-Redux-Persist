@@ -1,6 +1,15 @@
-import { createSlice} from "@reduxjs/toolkit";
+import { createSlice,PayloadAction} from "@reduxjs/toolkit";
 
-const initialState ={
+type Inputs = {
+  name: string
+  members: string[]
+}
+
+interface InitialState {
+  projects: Inputs[],
+}
+
+const initialState :InitialState={
   projects:[],
 }
 
@@ -8,7 +17,7 @@ const projectSlice = createSlice({
   name: "project",
   initialState : initialState,
   reducers: {
-    addProject(state,action:any) {
+    addProject(state,action:PayloadAction<Inputs>) {
       state.projects.push(action.payload);     
     },
   }   

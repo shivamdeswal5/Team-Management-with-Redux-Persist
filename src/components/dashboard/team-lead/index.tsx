@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Button, Typography, TextField, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
+import { Box, Button, Typography, TextField, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { addProject } from '../../../redux/slices/project/projectSlice';
+import { RootState,AppDispatch } from '../../../redux/store';
 
 type Project = {
   name: string;
@@ -15,10 +17,10 @@ type TeamLeadProps = {};
 
 const TeamLeadDashboard: React.FC<TeamLeadProps> = () => {
 
-  const { team } = useSelector((state) => state);
-  const { user } = useSelector((state) => state);
-  const { project } = useSelector((state) => state);
-  const dispatch = useDispatch();
+  const { team } = useSelector((state:RootState) => state);
+  const { user } = useSelector((state:RootState) => state);
+  const { project } = useSelector((state:RootState) => state);
+  const dispatch = useDispatch<AppDispatch>();
 
   const [newProjectName, setNewProjectName] = useState('');
   const [teamMembers, setTeamMembers] = useState<string[]>([]);

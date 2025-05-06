@@ -11,6 +11,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
 import {useSelector } from "react-redux";
+import { RootState,AppDispatch } from '../../redux/store';
+import { Root } from 'react-dom/client';
 
 
 const schema = yup
@@ -22,8 +24,8 @@ const schema = yup
 
 export default function Signup() {
 
-    const { user } = useSelector((state) => state);
-    const { team } = useSelector((state) => state);
+    const { user } = useSelector((state:RootState) => state);
+    const { team } = useSelector((state:RootState) => state);
 
     const navigate = useNavigate();
 
