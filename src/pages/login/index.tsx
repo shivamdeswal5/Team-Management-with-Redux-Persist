@@ -11,9 +11,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
 import {useSelector } from "react-redux";
-import { RootState,AppDispatch } from '../../redux/store';
-import { Root } from 'react-dom/client';
-
+import { RootState } from '../../redux/store';
 
 const schema = yup
     .object({
@@ -67,7 +65,7 @@ export default function Signup() {
             if (matchedUser.role === "admin") {
                 navigate("/admin");
             } else {
-                const isTeamLead = team.teams.some((team: any) => team.lead === matchedUser.name);
+                const isTeamLead = team.teams.some((team) => team.lead === matchedUser.name);
     
                 if (isTeamLead) {
                     navigate("/teamlead");
